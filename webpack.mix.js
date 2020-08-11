@@ -13,4 +13,5 @@ const mix = require('laravel-mix');
 mix.browserSync('aquabox.local');
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/admin/actions_device.js', 'public/js/admin')
     .sass('resources/sass/app.scss', 'public/css');

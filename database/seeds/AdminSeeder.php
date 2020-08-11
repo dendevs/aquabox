@@ -21,7 +21,13 @@ class AdminSeeder extends Seeder
             'password' => Hash::make( env('ADMIN_PASSWORD') ),
             ]
         );
+
         // add roles
         //$user->assignRole('admin');
+
+        // token
+        $api_token = $user->createToken("aquabox-{$user->email}", [])->accessToken;
+        $user->api_token = $api_token;
+        $user->save();
     }
 }
