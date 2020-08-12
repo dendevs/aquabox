@@ -22,6 +22,7 @@ class ActionManagerService
         if( $this->check($action) )
             $ok = $this->run_cmd($action->cmd);
 
+        dd( $ok);
         return $ok;
     }
 
@@ -77,12 +78,17 @@ class ActionManagerService
         $full_cmd_path = $this->_script_path . $cmd;
 
         $output = [];
-        exec('whoaemi', $output, $ok);
+        exec($full_cmd_path, $output, $ok);
 
         if( $ok == 0 )
+        {
             $ok = true;
+        }
         else
+        {
             Log::warning("#ActionManager: Fail to run {$full_cmd_path}");
+            $ok = false;
+        }
 
         return $ok;
     }
