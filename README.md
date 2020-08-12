@@ -23,3 +23,8 @@ sudo chown www-data -R pi_scripts/*
 sudo chmod 774 -R pi_scripts/*
 ```
 
+Permetre à apache de gérer les GPIO
+```bash
+sudo adduser www-data gpio
+```
+

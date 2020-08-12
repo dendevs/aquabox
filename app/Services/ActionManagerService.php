@@ -22,7 +22,6 @@ class ActionManagerService
         if( $this->check($action) )
             $ok = $this->run_cmd($action->cmd);
 
-        dd( $ok);
         return $ok;
     }
 
@@ -86,8 +85,8 @@ class ActionManagerService
         }
         else
         {
-            Log::warning("#ActionManager: Fail to run {$full_cmd_path}");
             $ok = false;
+            Log::warning("#ActionManager: Fail to run {$full_cmd_path}");
         }
 
         return $ok;
