@@ -67,10 +67,23 @@ class CronWatch extends Command
         else
             $week = 4;
 
-        $formated = implode(':', [$hour, $minute, $day, $week, $month]);
+        /*
+        // debug data
+        $hour = 13;
+        $minute = 5;
+        $day = 1;
+        $week = 1;
+        $month = 1;
+        */
 
         // search cron to run now
-        $crons = Cron::where('formated', $formated)->get();
+        $crons = Cron::where('hour', $hour)->orWhere('hour', '-1')
+            ->where('minute', $minute)->orWhere('minute', '-1')
+            ->where('day', $day)->orWhere('day', '-1')
+            ->where('week', $week)->orWhere('week', '-1')
+            ->where('month', $month)->orWhere('month', '-1')
+            ->get();
+
         foreach( $crons as $cron )
         {
             $action = Action::find($cron->action_id);

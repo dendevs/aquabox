@@ -102,8 +102,8 @@ class CronCrudController extends CrudController
             }),
         ]);
 
-        $hours = [ 0 => '*'];
-        for( $i = 1; $i <= 24; $i++)
+        $hours = [ -1 => '*'];
+        for( $i = 0; $i <= 24; $i++)
             $hours[$i] = $i . 'H';
         CRUD::addField([
             'name'        => 'hour',
@@ -123,7 +123,7 @@ class CronCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $days = [ 0 => '*', 1 => 'Lundi', 2 => 'Mardi', 3 => 'Mecredi', 4 => 'Jeudi', 5 => 'Vendredi', 6 => 'Samedi', 7 => 'Dimanche' ];
+        $days = [ -1 => '*', 1 => 'Lundi', 2 => 'Mardi', 3 => 'Mecredi', 4 => 'Jeudi', 5 => 'Vendredi', 6 => 'Samedi', 7 => 'Dimanche' ];
         CRUD::addField([
             'name'        => 'day',
             'label'       => "Jour",
@@ -132,7 +132,7 @@ class CronCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $weeks = [ 0 => '*', 1 => '1', 2 => '2', 3 => '3', 4 => '4' ];
+        $weeks = [ -1 => '*', 1 => '1', 2 => '2', 3 => '3', 4 => '4' ];
         CRUD::addField([
             'name'        => 'week',
             'label'       => "Semaine",
@@ -141,7 +141,7 @@ class CronCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $months = [ 0 => '*', 1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril', 5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Aout', 9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre' ];
+        $months = [ -1 => '*', 1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril', 5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Aout', 9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre' ];
         CRUD::addField([
             'name'        => 'month',
             'label'       => "Mois",

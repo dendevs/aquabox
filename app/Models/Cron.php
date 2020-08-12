@@ -62,13 +62,4 @@ class Cron extends Model
     | EVENTS
     |--------------------------------------------------------------------------
     */
-    protected static function booted()
-    {
-        static::saving(function($cron){
-            $cron->formated = implode(':', [$cron->hour, $cron->minute, $cron->day, $cron->week, $cron->month]);
-        });
-        static::updating(function($cron){
-            $cron->formated = implode(':', [$cron->hour, $cron->minute, $cron->day, $cron->week, $cron->month]);
-        });
-    }
 }
