@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Action extends Model
+class Cron extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Action extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'actions';
+    protected $table = 'crons';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,9 +34,9 @@ class Action extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function device()
+    public function action()
     {
-        return $this->hasOne('App\Models\Device', 'id', 'device_id');
+        return $this->hasOne('App\Models\Action', 'id', 'action_id');
     }
 
     /*
@@ -50,14 +50,25 @@ class Action extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public function getLabelFullAttribute()
-    {
-        return $this->label . ' - ' . $this->device->label;
-    }
 
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+    /*
+    |--------------------------------------------------------------------------
+    | EVENTS
+    |--------------------------------------------------------------------------
+    */
+    protected static function booted()
+    {
+        static::saving(function($cron){
+            $cron->formated = implode(':', [$cron->hour, $cron->minute, $cron->day, $cron->week, $cron->month]);
+        });
+        static::updating(function($cron){
+            $cron->formated = implode(':', [$cron->hour, $cron->minute, $cron->day, $cron->week, $cron->month]);
+        });
+    }
 }

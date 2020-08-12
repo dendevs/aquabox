@@ -40,12 +40,12 @@ class DeviceSeeder extends Seeder
                 'actions' => [
                     [
                         'label' => 'Allumer',
-                        'description' => 'Allumer les lampes',
+                        'description' => 'Allumer la filtration',
                         'cmd' => 'aquabox.py -r 2 -s on',
                     ],
                     [
                         'label' => 'Eteindre',
-                        'description' => 'Eteindre les lampes',
+                        'description' => 'Eteindre la filtration',
                         'cmd' => 'aquabox.py -r 2 -s off',
                     ],
                 ]

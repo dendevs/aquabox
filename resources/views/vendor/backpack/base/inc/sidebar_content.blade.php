@@ -9,6 +9,9 @@
     </ul>
 </li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('device') }}'><i class='nav-icon la la-cog'></i> Devices</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('cron') }}'><i class='nav-icon la la-calendar-times'></i> Crons</a></li>
+<hr>
+
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
 
 
