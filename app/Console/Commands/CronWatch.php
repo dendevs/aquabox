@@ -67,21 +67,32 @@ class CronWatch extends Command
         else
             $week = 4;
 
-        /*
         // debug data
-        $hour = 13;
-        $minute = 5;
+        /*
+        $hour = 1;
+        $minute = 57;
         $day = 1;
         $week = 1;
         $month = 1;
         */
 
         // search cron to run now
-        $crons = Cron::where('hour', $hour)->orWhere('hour', '-1')
-            ->where('minute', $minute)->orWhere('minute', '-1')
-            ->where('day', $day)->orWhere('day', '-1')
-            ->where('week', $week)->orWhere('week', '-1')
-            ->where('month', $month)->orWhere('month', '-1')
+        $crons = Cron::where('hour', $hour)
+            ->where(function ($query) use ( $hour ) { // fct make AND ( ... or ... )
+                $query->where('hour', $hour)->orWhere('hour', '-1');
+            })
+            ->where(function ($query) use ( $minute ) {
+                $query->where('minute', $minute)->orWhere('minute', '-1');
+            })
+            ->where(function ($query) use ( $day) {
+                $query->where('day', $day)->orWhere('day', '-1');
+            })
+            ->where(function ($query) use ( $week) {
+                $query->where('week', $week)->orWhere('week', '-1');
+            })
+            ->where(function ($query) use ( $month) {
+                $query->where('month', $month)->orWhere('month', '-1');
+            })
             ->get();
 
         foreach( $crons as $cron )
